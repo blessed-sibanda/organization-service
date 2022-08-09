@@ -27,11 +27,19 @@ public class OrganizationService {
 
     }
 
-    public void update(Organization organization){
-    	repository.save(organization);
+    public void update(String id, Organization organization){
+    	var org = repository.findById(id);
+        if (org.isPresent()) {
+            var o = org.get();
+            o.setName(organization.getName());
+            o.setContactEmail(organization.getContactEmail());
+            o.setContactName(organization.getContactName());
+            o.setContactPhone(organization.getContactPhone());
+            repository.save(o);
+        }
     }
 
-    public void delete(Organization organization){
-    	repository.deleteById(organization.getId());
+    public void delete(String id){
+    	repository.deleteById(id);
     }
 }

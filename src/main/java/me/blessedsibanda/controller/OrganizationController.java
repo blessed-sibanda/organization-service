@@ -20,7 +20,7 @@ public class OrganizationController {
 
     @PutMapping("/{organizationId}")
     public void updateOrganization(@PathVariable("organizationId") String id, @RequestBody Organization organization) {
-        service.update(organization);
+        service.update(id, organization);
     }
 
     @PostMapping
@@ -30,8 +30,8 @@ public class OrganizationController {
 
     @DeleteMapping("/{organizationId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteOrganization(@PathVariable("id") String id, @RequestBody Organization organization) {
-        service.delete(organization);
+    public void deleteOrganization(@PathVariable("organizationId") String id) {
+        service.delete(id);
     }
 
 }
